@@ -9,7 +9,8 @@ import { ProductImages } from "../../../Domain/entities/ProductImages";
 import { GetAllCategoryUseCase } from "../../../Domain/useCases/Category/GetAllCategory";
 import { GetAllProductUseCase } from "../../../Domain/useCases/Product/GetAllProduct";
 import { AuthContext } from "../auth/AuthContext";
-
+import { getShoppingCartUsecase } from "../../../Domain/useCases/shoppingCart/GetShoppingCartUSeCase";
+import { saveShoppingCartUsecase } from "../../../Domain/useCases/shoppingCart/SaveShoppingCartUseCase";
 
 
 interface ShoppingCartContextProps {
@@ -123,13 +124,13 @@ export const ShoppingCartProvider = ({ children }) => {
     }
 
     const removeProductShoppingCart = async (product: Product): Promise<boolean> => {
-        const index = products.findIndex((p) => p.id === product.id);
+        const index = userShoppingCart.findIndex((p) => p.id === product.id);
 
-        products.splice(index, 1);
+        userShoppingCart.splice(index, 1);
 
-        await SaveProductUseCase(products);
+        await saveShoppingCartUsecase(userShoppingCart);
 
-        await getShoppingCart();
+        await getShoppingCartUsecase();
 
         return true;
     }

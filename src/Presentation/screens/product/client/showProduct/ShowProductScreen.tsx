@@ -56,7 +56,7 @@ const ShowProductScreen = ({navigation, route}: Props) => {
               Productos
             </Text>
 
-            <TouchableOpacity >
+            <TouchableOpacity onPress={ () => navigation.navigate('ShoppingCartScreen')}>
               
               <Image source={require('../../../../../../assets/shopping_cart.png')} style={{ width: 40, height: 40 }} />
               <Text style={styles.shoppingCartLogo}>{userShopping.length}</Text>

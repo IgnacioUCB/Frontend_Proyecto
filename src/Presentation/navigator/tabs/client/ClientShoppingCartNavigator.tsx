@@ -10,14 +10,14 @@ export type ClientShoppingCartNavigatorParamsList = {
     CategoryListScreen: undefined;
     ProductListScreen: { categoryId: number };
     ShoppingCartScreen: undefined;
-    //PayScreen: undefined;
+    PayScreen: undefined;
 }
 
 const Stack = createStackNavigator<ClientShoppingCartNavigatorParamsList>();
 
 import ShowProductScreen from '../../../screens/product/client/showProduct/ShowProductScreen';
 import ShowCategoryScreen from '../../../screens/category/client/showCategory/ShowCategoryScreen';
-//import { ShoppingCartScreen } from '../../../screens/shoppingCart/ShoppingCartScreen';
+import { ShoppingCartScreen } from '../../../screens/shoppingCart/ShoppingCartScreen';
 import { Text, TouchableOpacity } from 'react-native';
 import React, { ReactElement } from 'react';
 import { ShoppingCartProvider } from '../../../context/shoppingCart/ShoppingCartContext';
@@ -46,7 +46,14 @@ export const ClientShoppingCartNavigator = () => {
                 />
                 <Stack.Screen
                     name="ShoppingCartScreen"
-                    component={ShowProductScreen}
+                    component={ShoppingCartScreen}
+                    options={{
+                        headerShown: false,
+                    }}
+                />
+                <Stack.Screen
+                    name="PayScreen"
+                    component={ShoppingCartScreen}
                     options={{
                         headerShown: false,
                     }}
