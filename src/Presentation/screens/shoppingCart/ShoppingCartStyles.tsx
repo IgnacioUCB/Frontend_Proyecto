@@ -83,6 +83,12 @@ const shoppingCartStyles = StyleSheet.create({
         width: 25,
         height: 25,
     },
+    addTakeItem: {
+        width: 25,
+        height: 25,
+        marginLeft:3,
+        marginRight:3,
+    },
     containerList: {
         backgroundColor: '#f2f2f2',
         flex: 1

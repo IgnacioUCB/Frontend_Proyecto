@@ -11,6 +11,7 @@ import { GetAllProductUseCase } from "../../../Domain/useCases/Product/GetAllPro
 import { AuthContext } from "../auth/AuthContext";
 import { getShoppingCartUsecase } from "../../../Domain/useCases/shoppingCart/GetShoppingCartUSeCase";
 import { saveShoppingCartUsecase } from "../../../Domain/useCases/shoppingCart/SaveShoppingCartUseCase";
+import { Alert } from "react-native";
 
 
 interface ShoppingCartContextProps {
@@ -22,7 +23,8 @@ interface ShoppingCartContextProps {
     saveProductShoppingCart: (product: Product) => Promise<boolean>;
     getTotal: () => void;
     removeProductShoppingCart: (product: Product) => Promise<boolean>;
-
+    takeProductShoppingCart: (product: Product) => Promise<boolean>;
+    addProductShoppingCart: (product: Product) => Promise<boolean>;
 }
 
 export const ShoppingCartContext = createContext({} as ShoppingCartContextProps);
@@ -126,13 +128,70 @@ export const ShoppingCartProvider = ({ children }) => {
     const removeProductShoppingCart = async (product: Product): Promise<boolean> => {
         const index = userShoppingCart.findIndex((p) => p.id === product.id);
 
+        Alert.alert(
+            "Producto quitado ", // Alert title
+            "El producto se ha eliminado del carrito.", // Message ALERTA
+            [
+              {
+                text: "ACEPTAR.", // Button text
+                onPress: () => console.log("OK Pressed"), // confirma la alerta
+                //navigation.navigate('ShoppingCartListScreen') // navega a la pantalla de carrito OJITO AQUI
+              },
+            ]
+        );
+        
         userShoppingCart.splice(index, 1);
 
         await saveShoppingCartUsecase(userShoppingCart);
 
         await getShoppingCartUsecase();
 
+        getTotal();
+
+        
+        
         return true;
+    }
+
+    const takeProductShoppingCart = async (product: Product): Promise<boolean> => {
+        const index = userShoppingCart.findIndex((p) => p.id === product.id);
+
+
+        if (product.quantity != 1) {
+            userShoppingCart[index].quantity = userShoppingCart[index].quantity - 1;
+            
+        }else{
+            Alert.alert(
+                "Producto quitado ", // Alert title
+                "El producto se ha eliminado del carrito.", // Message ALERTA
+                [
+                  {
+                    text: "ACEPTAR.", // Button text
+                    onPress: () => console.log("OK Pressed"), // confirma la alerta
+                    //navigation.navigate('ShoppingCartListScreen') // navega a la pantalla de carrito OJITO AQUI
+                  },
+                ]
+            );
+            userShoppingCart.splice(index, 1);
+        }
+
+        await SaveProductUseCase(userShoppingCart);
+
+        getShoppingCart();
+
+        return Promise.resolve(true);
+    }
+
+    const addProductShoppingCart = async (product: Product): Promise<boolean> => {
+        const index = userShoppingCart.findIndex((p) => p.id === product.id);
+       
+        userShoppingCart[index].quantity = userShoppingCart[index].quantity + 1;
+            
+        await SaveProductUseCase(userShoppingCart);
+
+        getShoppingCart();
+
+        return Promise.resolve(true);
     }
 
     const getCategories = async () => {
@@ -223,6 +282,8 @@ export const ShoppingCartProvider = ({ children }) => {
                 getShoppingCart,
                 saveProductShoppingCart,
                 removeProductShoppingCart,
+                takeProductShoppingCart,
+                addProductShoppingCart,
                 getTotal
             }}
         >

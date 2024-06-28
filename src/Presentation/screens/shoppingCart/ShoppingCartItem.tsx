@@ -7,9 +7,11 @@ import ShoppingCartStyles from './ShoppingCartStyles';
 interface ShoppingCartItemProps {
     product: Product;
     remove: (product: Product) => void;
+    take:  (product: Product) => void;
+    add:  (product: Product) => void;
 }
 
-export const ShoppingCartItem = ({ product, remove }: ShoppingCartItemProps) => {
+export const ShoppingCartItem = ({ product, remove , take, add}: ShoppingCartItemProps) => {
 
     return (
         <View style={ShoppingCartStyles.container}>
@@ -24,9 +26,31 @@ export const ShoppingCartItem = ({ product, remove }: ShoppingCartItemProps) => 
                 <View style={{ flexDirection: 'row' }}>
                     <Text style={ShoppingCartStyles.title}>{product.name}</Text>
                     <Text style={ShoppingCartStyles.price}>$ {product.price}</Text>
+
+
                     <Text style={ShoppingCartStyles.price}>{product.quantity}</Text>
+                    <TouchableOpacity
+                        onPress={() => take(product)}
+                    >
+                    <Image
+                        source={require('../../../../assets/menos.png')}
+                        style={ShoppingCartStyles.addTakeItem}
+                        
+                    />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => add(product)}
+                    >
+                    <Image
+                        source={require('../../../../assets/mas.png')}
+                        style={ShoppingCartStyles.addTakeItem}
+                        
+                    />
+                    </TouchableOpacity>
                 </View>
             </View>
+
+
 
             <TouchableOpacity
                 onPress={() => remove(product)}
@@ -36,6 +60,7 @@ export const ShoppingCartItem = ({ product, remove }: ShoppingCartItemProps) => 
                     style={ShoppingCartStyles.deleteItem}
                 />
             </TouchableOpacity>
+
         </View>
     )
 }

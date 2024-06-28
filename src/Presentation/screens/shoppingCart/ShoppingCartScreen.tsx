@@ -17,7 +17,7 @@ interface Props extends StackScreenProps<ClientShoppingCartNavigatorParamsList, 
 
 export const ShoppingCartScreen = ({navigation, route}: Props) => {
 
-    const { userShoppingCart, total, removeProductShoppingCart } = useContext(ShoppingCartContext);
+    const { userShoppingCart, total, removeProductShoppingCart, takeProductShoppingCart , addProductShoppingCart} = useContext(ShoppingCartContext);
 
 
     const removeProduct = async (product: Product) => {
@@ -27,6 +27,19 @@ export const ShoppingCartScreen = ({navigation, route}: Props) => {
             showMessage({
                 icon: "success",
                 message: "Producto eliminado del carrito",
+                type: "success"
+            
+            });
+        }
+    }
+
+    const takeProduct = async (product: Product) => {
+        const response = await takeProductShoppingCart(product);
+
+        if(response){
+            showMessage({
+                icon: "success",
+                message: "Producto sacado del carrito",
                 type: "success"
             
             });
@@ -44,7 +57,7 @@ export const ShoppingCartScreen = ({navigation, route}: Props) => {
             
             <Image
                 style={shoppingCartStyles.imageBackground}
-                source={require('../../../../assets/food-wallpaper.png')}
+                source={require('../../../../assets/fondo_pedido.jpg')}
             />
             {
                 (userShoppingCart.length === 0) ? (
@@ -56,7 +69,7 @@ export const ShoppingCartScreen = ({navigation, route}: Props) => {
                             <FlatList
                                 data={userShoppingCart}
                                 keyExtractor={item => item.id.toString()}
-                                renderItem={({ item }) => <ShoppingCartItem product={item} remove={removeProduct} />}
+                                renderItem={({ item }) => <ShoppingCartItem product={item} remove={removeProduct} take={takeProduct} add={addProductShoppingCart}/>}
                             />
                             <View style={shoppingCartStyles.totalToPay}>
                                 <View style={shoppingCartStyles.totalInfo}>
