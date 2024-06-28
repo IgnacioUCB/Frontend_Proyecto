@@ -30,6 +30,8 @@ const styles = StyleSheet.create({
         borderRadius: 0,
         padding: 15,
         width: '100%',
+        marginTop: 3 ,
+        marginBottom: 5,
 
     },
     textButton: {
