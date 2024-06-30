@@ -1,8 +1,8 @@
 export interface Address {
     id?: string;
+    nickname: string;
     address: string;
-    neighborhood: string;
     lat: number;
-    lng: number;
+    long: number;
     user_id: string;
 }

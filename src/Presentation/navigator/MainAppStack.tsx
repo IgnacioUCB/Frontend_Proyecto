@@ -1,4 +1,5 @@
 import {
+    Header,
   StackScreenProps,
   createStackNavigator,
 } from "@react-navigation/stack";
@@ -18,6 +19,7 @@ import { AdminBottomTabs } from './tabs/admin/AdminBottonTabs';
 import ProfileUpdateScreen from "../screens/profile/update/ProfileUpdateScreen";
 import { ClientBottomTabs } from './tabs/client/ClientBottomTabs';
 import ChangePasswordScreen from "../screens/changePassword/ChangePasswordScreen";
+import { ClientAddressNavigator } from "./tabs/client/ClientAddressNavigator";
 
 export type RootStackParamsList = {
     Login: undefined,
@@ -30,6 +32,7 @@ export type RootStackParamsList = {
     Category: undefined
     CreateCategory: undefined
     ProfileUpdateScreen : undefined
+    ClientAddressNavigator : undefined
 }
 
 
@@ -47,6 +50,7 @@ export const MainAppStack = () => {
             return <>
                 <Stack.Screen name = "ClientBottomTabs" component = {ClientBottomTabs} />
                 <Stack.Screen name = "ProfileUpdateScreen" component = {ProfileUpdateScreen} />
+                <Stack.Screen name = "ClientAddressNavigator" component = {ClientAddressNavigator}/>
             </>
                 
         }else if(user.role_id === 3 ){
@@ -62,6 +66,7 @@ export const MainAppStack = () => {
                 <Stack.Screen name="CreateCategory" component={CreateCategoryScreen} />
                 <Stack.Screen name="GetAllProduct" component={GetAllProductScreen} />
                 <Stack.Screen name="CreateProduct" component={CreateProductScreen} />
+                
             </>
         }
     }
