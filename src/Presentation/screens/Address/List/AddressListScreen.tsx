@@ -21,27 +21,32 @@ const AddressListScreen = ({navigation},route) => {
     return(
 
         <View style={AddressStyle.container}>
-        <View>
+        <ScrollView
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}>
             <View>
-                {/* <Text>{JSON.stringify(address)}</Text> */}
-                <FlatList
-                    data ={address}
-                    renderItem={({item}) => (
-                    <AddressItem address={item}/>
-                    )}
-                    keyExtractor={(item) => item.id}
-                    
-                />                    
+                <View>
+                    {/* <Text>{JSON.stringify(address)}</Text> */}
+                    <FlatList
+                        data ={address}
+                        renderItem={({item}) => (
+                        <AddressItem address={item}/>
+                        )}
+                        keyExtractor={(item) => item.id}
+                        
+                    />                    
+                </View>
+
             </View>
-        </View>
 
-        <View style ={AddressStyle.AddButtom} >
-            <RoundedButton 
-                text = 'Agregar Direccion'
-                onPress = {() => navigation.navigate('AddressCreateScreen')}
-
-            />
-        </View>            
+            <View style ={AddressStyle.AddButtom} >
+                <RoundedButton 
+                    text = 'Agregar Direccion'
+                    onPress = {() => navigation.navigate('AddressCreateScreen')}
+                    
+                    />
+            </View>            
+        </ScrollView>
     </View>
 
         

@@ -38,7 +38,16 @@ const AddressCreateViewModel = () => {
     const [errorMessages, setErrorMessages] = useState<Record<string, string>>({});
     
     const [errorsResponse, setErrorResponses] = useState<ResponseErrorData[]>([]);
-    
+
+    const [origin, setOrigin] = useState({
+        latitude: -23.59194082680236,
+        longitude: -70.39088892501735,
+    })
+
+    const [destination, setDestination] = useState({
+        latitude: -23.579768038289664,
+        longitude:-70.3901480307737,
+    })
     
     const [loading, setLoading] = useState(false);
     
@@ -76,8 +85,8 @@ const AddressCreateViewModel = () => {
     const [values, setValues] = useState({
         nickname: '',
         address: '',
-        lat: 0,
-        long: 0,
+        lat: origin.latitude,
+        long: origin.longitude,
         user_id: user.id,
         loading: false,
     })
@@ -112,7 +121,11 @@ const AddressCreateViewModel = () => {
         errorsResponse,
         create,
         loading,
-        setLoading
+        setLoading, 
+        origin,
+        setOrigin,
+        destination,
+        setDestination
     }
 }
 

@@ -34,6 +34,8 @@ const CreateStyles = StyleSheet.create({
   formText: {
     fontWeight: "bold",
     fontSize: 16,
+    marginBottom: 10,
+    marginTop:10,
   },
   formInput: {
     flexDirection: "row",
@@ -80,33 +82,19 @@ const CreateStyles = StyleSheet.create({
     height: 30,
     marginTop: 10,
   },
-  logoContainer: {
-    alignSelf: "center",
-    alignItems: "center",
-    position: "absolute",
-    top: "5%",
-  },
-  logo: {
-    width: 80,
-    height: 80,
-  },
-  logoText: {
-    color: "#000",
-    fontSize: 16,
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    textAlign: "center",
-  },
-  logoBack: {
-    width: 80,
-    height: 80,
-  },
   loading: {
     position: "absolute",
     top: 0,
     bottom: 0,
     right: 0,
     left: 0,
+  },
+  map: {
+    flex: 0,
+    position: "relative",
+    width: '100%',
+    height: 200,
+
   },
 });
 
