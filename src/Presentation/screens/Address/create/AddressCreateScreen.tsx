@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ActivityIndicator, Text, View } from 'react-native'
+import { ActivityIndicator, Image, Text, View } from 'react-native'
 
 
 import CreateStyles from './Styles'
@@ -48,6 +48,11 @@ const  AddressCreateScreen  = ({ navigation, route }: Props) => {
 
   return (
     <View style={CreateStyles.container}>
+            <Image
+                style={CreateStyles.imageBackground}
+                source={require('../../../../../assets/address_background.jpg')}
+            />
+
         <View style={{ ...CreateStyles.form, height: "75%" }}>
             <ScrollView
                 showsVerticalScrollIndicator={false}
