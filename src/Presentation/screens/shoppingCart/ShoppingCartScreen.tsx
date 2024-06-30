@@ -36,14 +36,6 @@ export const ShoppingCartScreen = ({navigation, route}: Props) => {
     const takeProduct = async (product: Product) => {
         const response = await takeProductShoppingCart(product);
 
-        if(response){
-            showMessage({
-                icon: "success",
-                message: "Producto sacado del carrito",
-                type: "success"
-            
-            });
-        }
     }
 
     return (

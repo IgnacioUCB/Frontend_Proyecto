@@ -6,7 +6,7 @@ import ProfileUpdateScreen from '../../../screens/profile/update/ProfileUpdateSc
 
 import React from 'react';
 
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 
 
 export type ClientBottomTabParamsList = {
@@ -30,7 +30,7 @@ export const ClientBottomTabs = () => {
                 component={ClientShoppingCartNavigator}
                 options={{
                     title: 'Tienda',
-                    tabBarIcon: ({ size, color }) => <FontAwesome name="user" size={size} color={color} />
+                    tabBarIcon: ({ size, color }) => <MaterialIcons name="shopping-basket" size={size} color={color} />
                 }}
             />
 

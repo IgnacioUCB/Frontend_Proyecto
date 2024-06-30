@@ -18,6 +18,7 @@ const Stack = createStackNavigator<ClientShoppingCartNavigatorParamsList>();
 import ShowProductScreen from '../../../screens/product/client/showProduct/ShowProductScreen';
 import ShowCategoryScreen from '../../../screens/category/client/showCategory/ShowCategoryScreen';
 import { ShoppingCartScreen } from '../../../screens/shoppingCart/ShoppingCartScreen';
+import { PayScreen } from '../../../screens/Payment/PayScreen';
 import { Text, TouchableOpacity } from 'react-native';
 import React, { ReactElement } from 'react';
 import { ShoppingCartProvider } from '../../../context/shoppingCart/ShoppingCartContext';
@@ -53,9 +54,10 @@ export const ClientShoppingCartNavigator = () => {
                 />
                 <Stack.Screen
                     name="PayScreen"
-                    component={ShoppingCartScreen}
+                    component={PayScreen}
                     options={{
-                        headerShown: false,
+                        headerShown: true,
+                        headerTitle: 'Pago Pedido'
                     }}
                 />
             </Stack.Navigator>

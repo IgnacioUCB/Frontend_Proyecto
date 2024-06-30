@@ -2,7 +2,7 @@ import { View, Text, Image } from 'react-native'
 import React from 'react'
 
 import { StackScreenProps } from '@react-navigation/stack'
-import { RootClientButonParamsList } from '../../../navigator/tabs/client/ClientBottonTabs'
+import { ClientBottomTabParamsList } from '../../../navigator/tabs/client/ClientBottomTabs'
 
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -12,12 +12,13 @@ import styles from './Styles';
 import useViewModel from './ViewModel';
 import { RoundedButton } from '../../../components/RoundedButton';
 import { RootStackParamsList } from '../../../navigator/MainAppStack';
+import { ClientAddressNavigatorParamList } from '../../../navigator/tabs/client/ClientAddressNavigator';
 
 
 interface Props extends StackScreenProps<RootStackParamsList,'AdminBottomTabs'> {};
 
 
-export const ProfileInfoScreen = ({navigation}, Props) => {
+export const ProfileInfoScreen = ({navigation}, Props,route) => {
 
     const {user, logoutUser} = useViewModel();
     return (
@@ -70,14 +71,24 @@ export const ProfileInfoScreen = ({navigation}, Props) => {
                         <Text style = {{fontWeight: 'bold'}}>Teléfono</Text>
                         <Text>{user?.phone}</Text>
                     </View>
+                    
                 </View>
 
-                <RoundedButton
-                    text = 'Actualizar información'
-                    onPress = {() => navigation.navigate('ProfileUpdateScreen')}
+                <View style = {{marginTop: -50, marginBottom: 3, position: 'relative'}}>
+
+                    <RoundedButton 
+                        text = 'Mis Direcciones'
+                        onPress = {() => navigation.navigate('ClientAddressNavigator')}
+                        
+                    />
                     
-                />
-            
+                    <RoundedButton
+                        text = 'Actualizar información'
+                        onPress = {() => navigation.navigate('ProfileUpdateScreen')}
+                        
+                    />
+                </View>
+
             </View>
         </View>
 
