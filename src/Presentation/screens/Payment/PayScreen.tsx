@@ -49,7 +49,7 @@ export const PayScreen = () =>{
             <View style= {paymentStyles.payButtom}>
                 <RoundedButton 
                     text={'Pagar'}
-                    onPress={create}
+                    onPress={handleSubmit}
                     key={'Pagar'}
                     
                 />

@@ -101,7 +101,12 @@ const PayViewModel = () => {
                     cvv: data.cvv,
                 }
         
-                setValuesCard(formatedData);               
+                setValuesCard(formatedData);   
+                showMessage({
+                    message:'Verficando Tarjeta',
+                    description:'se esta verificando el pago',
+                    type: 'warning',
+                })            
             }
 
         }
@@ -178,11 +183,6 @@ const PayViewModel = () => {
         setLoading(false);
     }
     
-
-
-
-   
-
     return {
         createOrder,
         creditCardRef,
