@@ -26,8 +26,8 @@ interface ResponseErrorData {
 const validationCreateAddressSchema = yup.object().shape({
     nickname: yup.string().required('El apodo es obligatorio'),
     address: yup.string().required('La direccion es obligatoria').max(50, 'La direccion no puede tener más de 50 caracteres'),
-    lat: yup.string().required('El latitud es obligatoria'),
-    long: yup.string().required('El longitud es obligatoria')
+    lat: yup.string().required('La latitud es obligatoria'),
+    long: yup.string().required('La longitud es obligatoria')
 });
 
 
