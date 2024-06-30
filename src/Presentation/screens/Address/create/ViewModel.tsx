@@ -44,10 +44,6 @@ const AddressCreateViewModel = () => {
         longitude: -70.39088892501735,
     })
 
-    const [destination, setDestination] = useState({
-        latitude: -23.579768038289664,
-        longitude:-70.3901480307737,
-    })
     
     const [loading, setLoading] = useState(false);
     
@@ -85,8 +81,8 @@ const AddressCreateViewModel = () => {
     const [values, setValues] = useState({
         nickname: '',
         address: '',
-        lat: origin.latitude,
-        long: origin.longitude,
+        lat: 0,
+        long: 0,
         user_id: user.id,
         loading: false,
     })
@@ -124,8 +120,6 @@ const AddressCreateViewModel = () => {
         setLoading, 
         origin,
         setOrigin,
-        destination,
-        setDestination
     }
 }
 

@@ -18,7 +18,7 @@ interface Props
 
 const  AddressCreateScreen  = ({ navigation, route }: Props) => {
 
-    const {
+    const { 
         nickname,
         address,
         lat,
@@ -29,12 +29,15 @@ const  AddressCreateScreen  = ({ navigation, route }: Props) => {
         loading,
         origin,
         setOrigin,
-        destination,
-        setDestination,
         errorsResponse,
         setErrorMessages,
         create
     } = useViewModel(); 
+
+    const [direction, setDirection] = useState({
+        latitude: origin.latitude,
+        longitude: origin.longitude,
+    })
 
     if(loading){
       return <LoadingScreen />
@@ -121,9 +124,45 @@ const  AddressCreateScreen  = ({ navigation, route }: Props) => {
                             draggable
                             coordinate = {origin}
                             onDragEnd={(direction) => setOrigin(direction.nativeEvent.coordinate)}
+                            
                         />
+                        
                     </MapView>
+                    <View style={CreateStyles.formInput}>
+                        <View style={CreateStyles.formInput}>
+                            <Text style ={CreateStyles.formText}>Latitud: </Text>
+                        </View>
+                        <TextInput
+                            style={CreateStyles.formTextInput} //funciona
+                            placeholder={
+                            "Ingrese la direccion"
+                            }
+                            keyboardType="default"
+                            value={lat.toString()}
+                            secureTextEntry={false}
+                            onChangeText={(text) => onChange("lat", text)}
+                            editable= {!loading}
+                        />
+                    </View>
+                    <View style={CreateStyles.formInput}>
+                        <View style={CreateStyles.formInput}>
+                            <Text style ={CreateStyles.formText}>Longitud: </Text>
+                        </View>
+                        <TextInput
+                            style={CreateStyles.formTextInput} //funciona
+                            placeholder={
+                            "Ingrese la direccion"
+                            }
+                            keyboardType="default"
+                            value={long.toString() } 
+                            secureTextEntry={false}
+                            onChangeText={(text) => onChange("long", text)}
+                            editable= {!loading}
+                        />
+                    </View>
                 </View>
+                    
+  
 
                 {errorMessages.long && <Text style={CreateStyles.formError}>{errorMessages.long}</Text>}
 
