@@ -2,6 +2,6 @@ import { ResponseAPIDelivery } from "../../Data/sources/remote/api/models/Respon
 import { Address } from "../entities/Address";
 
 export interface AddressRepository {
-    getAllAddress(token:string) : Promise<ResponseAPIDelivery>;
+    getAllAddress(user_id:String ,token:string) : Promise<ResponseAPIDelivery>;
     createAddres(address: Address , token:string ): Promise<ResponseAPIDelivery>;
 }

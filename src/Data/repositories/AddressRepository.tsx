@@ -9,10 +9,9 @@ import { ApiDelivery } from "../sources/remote/api/ApiDelivery";
 
 export class AddressRepositoryImpl implements AddressRepository {
 
-    async getAllAddress(token: string): Promise<ResponseAPIDelivery> {
+    async getAllAddress(UserId:string ,token: string): Promise<ResponseAPIDelivery> {
         try {
-
-            const {data} = await ApiDelivery.get<ResponseAPIDelivery>('address/',{
+            const {data} = await ApiDelivery.get<ResponseAPIDelivery>(`address/getAll/${UserId}`,{
                 headers:{
                     Authorization: `Bearer ${token}`
                 }
@@ -23,13 +22,26 @@ export class AddressRepositoryImpl implements AddressRepository {
             
         } catch (error) {
             let e = (error as AxiosError);
-            // console.log('ERROR: ', JSON.stringify(e.response?.data));
+            console.log('ERROR: ', JSON.stringify(e.response?.data));
             const apiError: ResponseAPIDelivery = JSON.parse(JSON.stringify(e.response?.data));
             return Promise.reject(apiError)
         }
     }
 
     async createAddres(address: Address, token: string): Promise<ResponseAPIDelivery> {
-        
+        try {
+            const {data} = await ApiDelivery.post('address/' , address, {
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            } )
+
+            return Promise.resolve(data);
+        } catch (error) {
+            let e = (error as AxiosError);
+            console.log('ERROR: ', JSON.stringify(e.response?.data));
+            const apiError: ResponseAPIDelivery = JSON.parse(JSON.stringify(e.response?.data));
+            return Promise.reject(apiError)
+        }
     }
 }

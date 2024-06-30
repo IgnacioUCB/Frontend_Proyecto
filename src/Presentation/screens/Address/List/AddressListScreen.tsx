@@ -30,7 +30,7 @@ const AddressListScreen = ({navigation},route) => {
                     renderItem={({item}) => (
                         <AddressItem address={item}/>
                     )}
-                    keyExtractor={(item) => item.id!}
+                    keyExtractor={(item) => item.id}
                     
                 />                    
             </View>

@@ -4,6 +4,6 @@ import { AddressRepositoryImpl } from "../../../Data/repositories/AddressReposit
 const { getAllAddress} = new AddressRepositoryImpl();
 
 
-export const getAllAddressUseCase = async (token: string) => {
-    return await getAllAddress(token);
+export const getAllAddressUseCase = async (user_id:string,token: string) => {
+    return await getAllAddress(user_id,token);
 }
