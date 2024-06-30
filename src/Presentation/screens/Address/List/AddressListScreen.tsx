@@ -24,11 +24,10 @@ const AddressListScreen = ({navigation},route) => {
         <View>
             <View>
                 {/* <Text>{JSON.stringify(address)}</Text> */}
-
                 <FlatList
                     data ={address}
                     renderItem={({item}) => (
-                        <AddressItem address={item}/>
+                    <AddressItem address={item}/>
                     )}
                     keyExtractor={(item) => item.id}
                     

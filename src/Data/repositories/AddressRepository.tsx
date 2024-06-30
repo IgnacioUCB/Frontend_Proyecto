@@ -22,7 +22,7 @@ export class AddressRepositoryImpl implements AddressRepository {
             
         } catch (error) {
             let e = (error as AxiosError);
-            console.log('ERROR: ', JSON.stringify(e.response?.data));
+            //console.log('ERROR: ', JSON.stringify(e.response?.data));
             const apiError: ResponseAPIDelivery = JSON.parse(JSON.stringify(e.response?.data));
             return Promise.reject(apiError)
         }
@@ -30,7 +30,7 @@ export class AddressRepositoryImpl implements AddressRepository {
 
     async createAddres(address: Address, token: string): Promise<ResponseAPIDelivery> {
         try {
-            const {data} = await ApiDelivery.post('address/' , address, {
+            const {data} = await ApiDelivery.post('address/', address, {
                 headers:{
                     Authorization:`Bearer ${token}`
                 }

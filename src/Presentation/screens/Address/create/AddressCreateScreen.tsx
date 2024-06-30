@@ -122,7 +122,7 @@ const  AddressCreateScreen  = ({ navigation, route }: Props) => {
                     {
                     (!loading) && (
                         <RoundedButton
-                        text="Confirmar Crear"
+                        text="Añadir Direccion"
                         onPress={create}
                         />
                     )

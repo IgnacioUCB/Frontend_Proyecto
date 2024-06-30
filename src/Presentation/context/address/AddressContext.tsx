@@ -28,7 +28,7 @@ export const AddressProvider = ({children}: any ) => {
 
     const getAllAddress = async () => {
         try {
-           const response = await getAllAddressUseCase(user.id,user.session_token);
+           const response = await getAllAddressUseCase(user.id, user.session_token);
            setAddress(response.data as Address[]);
         } catch (error) {
             setAddress([]);
